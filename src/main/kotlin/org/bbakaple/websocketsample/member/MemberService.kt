@@ -1,18 +1,24 @@
 package org.bbakaple.websocketsample.member
 
+import org.bbakaple.websocketsample.auth.LoginContext
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional
 @Service
-class MemberService(private val memberRepository: MemberRepository) {
+class MemberService(
+    private val memberRepository: MemberRepository,
+    private val loginContext: LoginContext
+) {
 
     fun create(request: MemberCreateRequest) {
         memberRepository.save(Member(name = request.name, userId = request.userId))
     }
 
-    fun login(request: LoginRequest): Long {
-        return memberRepository.findByUserId(request.userId)?.id
-            ?: throw IllegalArgumentException()
+    fun login(request: LoginRequest) {
+        val id = (memberRepository.findByUserId(request.userId)?.id
+            ?: throw IllegalArgumentException())
+
+        loginContext.id = id
     }
 }
