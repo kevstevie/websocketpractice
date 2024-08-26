@@ -10,4 +10,7 @@ class ChatRoom(
     @MappedCollection
     val chatRoomMembers: MutableList<ChatRoomMember> = mutableListOf()
 ) {
+    fun add(chatRoomMember: ChatRoomMember) {
+        chatRoomMembers.add(chatRoomMember)
+    }
 }
