@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository
 @Repository
 interface MemberRepository : CrudRepository<Member, Long> {
 
-    fun findByUserIdAndPassword(userId: String, password: String): Member?
+    fun findByUserId(userId: String): Member?
 }

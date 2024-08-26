@@ -8,6 +8,11 @@ import org.springframework.transaction.annotation.Transactional
 class MemberService(private val memberRepository: MemberRepository) {
 
     fun create(request: MemberCreateRequest) {
-        memberRepository.save(Member(name = request.name, userId = request.userId, password = request.password))
+        memberRepository.save(Member(name = request.name, userId = request.userId))
+    }
+
+    fun login(request: LoginRequest): Long {
+        return memberRepository.findByUserId(request.userId)?.id
+            ?: throw IllegalArgumentException()
     }
 }
