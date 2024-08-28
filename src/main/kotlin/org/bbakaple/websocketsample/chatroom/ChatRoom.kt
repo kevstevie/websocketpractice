@@ -7,8 +7,8 @@ class ChatRoom(
     @Id
     var id: Long = 0,
     val name: String,
-    @MappedCollection
-    val chatRoomMembers: MutableList<ChatRoomMember> = mutableListOf()
+    @MappedCollection(idColumn = "CHAT_ROOM_ID")
+    val chatRoomMembers: MutableSet<ChatRoomMember> = mutableSetOf()
 ) {
     fun add(chatRoomMember: ChatRoomMember) {
         chatRoomMembers.add(chatRoomMember)
