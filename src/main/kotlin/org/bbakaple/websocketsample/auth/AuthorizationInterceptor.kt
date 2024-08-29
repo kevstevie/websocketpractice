@@ -10,9 +10,11 @@ import org.springframework.web.servlet.HandlerInterceptor
 class AuthorizationInterceptor(private val loginContext: LoginContext) : HandlerInterceptor {
 
     override fun preHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any): Boolean {
-        val handlerMethod = handler as HandlerMethod
+        if (handler !is HandlerMethod) {
+            return true
+        }
 
-        if (handlerMethod.hasMethodAnnotation(Authorization::class.java).not()) {
+        if (handler.hasMethodAnnotation(Authorization::class.java).not()) {
             return true
         }
 
