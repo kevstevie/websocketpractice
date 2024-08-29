@@ -8,4 +8,6 @@ interface ChatRoomRepository : org.springframework.data.repository.Repository<Ch
     fun findById(id: Long): ChatRoom?
 
     fun save(chatRoom: ChatRoom)
+
+    fun findAll(): List<ChatRoom>
 }

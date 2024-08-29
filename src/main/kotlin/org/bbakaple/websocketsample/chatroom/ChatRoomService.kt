@@ -17,4 +17,8 @@ class ChatRoomService(private val chatRoomRepository: ChatRoomRepository) {
         chatRoom.add(ChatRoomMember(memberId = AggregateReference.to(memberId)))
         chatRoomRepository.save(chatRoom)
     }
+
+    fun list(): List<ChatRoomResponse> {
+        return chatRoomRepository.findAll().map { ChatRoomResponse(it.id, it.name) }
+    }
 }
