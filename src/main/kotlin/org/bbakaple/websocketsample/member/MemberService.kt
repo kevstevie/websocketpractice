@@ -12,7 +12,7 @@ class MemberService(
 ) {
 
     fun create(request: MemberCreateRequest) {
-        memberRepository.save(Member(name = request.name, userId = request.userId))
+        memberRepository.save(Member(name = request.name))
     }
 
     fun login(request: LoginRequest) {
