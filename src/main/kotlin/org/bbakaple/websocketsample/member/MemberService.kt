@@ -16,7 +16,7 @@ class MemberService(
     }
 
     fun login(request: LoginRequest) {
-        val id = (memberRepository.findByUserId(request.userId)?.id
+        val id = (memberRepository.findByName(request.name)?.id
             ?: throw IllegalArgumentException())
 
         loginContext.id = id

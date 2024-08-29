@@ -1,3 +1,3 @@
 package org.bbakaple.websocketsample.member
 
-data class LoginRequest(val userId: String)
+data class LoginRequest(val name: String)
