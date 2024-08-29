@@ -19,4 +19,8 @@ class MessageService(private val messageRepository: MessageRepository) {
         )
         return messageRepository.findWithWriter(request.memberId) ?: throw IllegalArgumentException()
     }
+
+    fun findByChatRoomId(chatRoomId: Long): List<MessageResponse> {
+        return messageRepository.findByChatRoomId(chatRoomId)
+    }
 }

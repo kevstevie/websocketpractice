@@ -19,4 +19,15 @@ interface MessageRepository : CrudRepository<Message, Long> {
     """
     )
     fun findWithWriter(@Param("id") id: Long): MessageResponse?
+
+    @Query(
+        """
+        select m.name writer, me.text text, me.time time
+        from Message me
+        join Member m
+        on me.member_id = m.id
+        where me.chat_room_id = :chatRoomId
+        """
+    )
+    fun findByChatRoomId(@Param("chatRoomId") chatRoomId: Long): List<MessageResponse>
 }
